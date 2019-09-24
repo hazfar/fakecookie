@@ -1,0 +1,92 @@
+<html>
+<head>
+	
+</head>
+<body>
+	<img id="TheCookie" src="https://i.imgur.com/AhhFpo2.jpg" style="height: 100px;">
+	<span id="Ctimes">you have 0 cookies</span>
+	<br>
+	<img id="TheGranny" src="https://i.imgur.com/H1O8KaY.jpg" style="height: 100px;">
+	<span id="Gtimes">you have 0 grannies</span>
+	<br>
+	<img id="TheMachine" src="https://i.imgur.com/GVyH10v.jpg" style="height: 100px;">
+	<span id="Mtimes">you have 0 cookie machines</span>
+	<br>
+	<!-- HTML的換行 -->
+	<img id="ThePortal" src="https://i.imgur.com/ZsMk8Vf.jpg" style="height: 100px;">
+	<span id="Ptimes">you have 0 cookie portals</span>
+</body>
+<script type="text/javascript">
+
+	var factoryArray = [
+			{
+				id: 'TheCookie',
+				cost: -1,
+				amount: 0,
+				production: 0,
+				time: 1000000000000000,
+				lalala: "Ctimes",
+				fufufu: "cookies",
+			},
+			{
+				id: 'TheGranny',
+				cost: 100,
+				amount: 0,
+				production: 1,
+				time: 10000,
+				lalala: "Gtimes",
+				fufufu: "grannies",
+			},
+			{
+				id: 'TheMachine',
+				cost: 1000,
+				amount: 0,
+				production: 1,
+				time: 1000,
+				lalala: "Mtimes",
+				fufufu: "cookie machines",
+			},
+			{
+				id: 'ThePortal',
+				cost: 5000,
+				amount: 0,
+				production: 10,
+				time: 1000,
+				lalala: "Ptimes",
+				fufufu: "cookie portals",
+			},
+		];
+
+	function updateCookie(amount = 0) {
+		factoryArray[0].amount += amount
+		document.getElementById(factoryArray[0].lalala).innerText = `you have ${ factoryArray[0].amount } ${ factoryArray[0].fufufu }.`
+	}
+
+	function cookieAdder(amount, time) {
+		updateCookie(amount)
+		submitAdder(amount, time)
+	}
+
+	function submitAdder(amount, time) {
+		setTimeout(cookieAdder, time, amount, time);
+	}
+
+	for (let i = 0; i < factoryArray.length; i++) {
+		document.getElementById(factoryArray[i].id).addEventListener('click', function(e){
+			if(factoryArray[i].cost <= factoryArray[0].amount){
+				factoryArray[i].amount++;
+				submitAdder(factoryArray[i].production , factoryArray[i].time)
+				// submitAdder(factoryArray[i].amount * factoryArray[i].production, factoryArray[i].time)
+
+				updateCookie( -factoryArray[i].cost )
+				// factoryArray[0].amount -= factoryArray[i].cost;
+				// document.getElementById(factoryArray[0].lalala).innerText = factoryArray[0].amount
+			}
+			document.getElementById(factoryArray[i].lalala).innerText = `you have ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }.`
+			// document.getElementById(factoryArray[i].lalala).innerText = 'you have ' + factoryArray[i].amount + ' ' + factoryArray[i].fufufu
+		})
+
+
+	}
+</script>
+</html>
