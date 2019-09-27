@@ -105,12 +105,12 @@
 				updateCookie( -factoryArray[i].cost )
 				// factoryArray[0].amount -= factoryArray[i].cost;
 				// document.getElementById(factoryArray[0].lalala).innerText = factoryArray[0].amount
+				factoryArray[i].cost += factoryArray[i].cost * 0.01 | 0;
 			}
 
 			if( i > 0){
 				document.getElementById(factoryArray[i].lalala).innerText = `你現在有 ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${ factoryArray[i].amount * factoryArray[i].production } 塊餅乾！`
 				// document.getElementById(factoryArray[i].lalala).innerText = 'you have ' + factoryArray[i].amount + ' ' + factoryArray[i].fufufu
-				factoryArray[i].cost += factoryArray[i].cost * 0.01 | 0;
 				document.getElementById(factoryArray[i].info).innerText = `你現在可以消耗 ${ factoryArray[i].cost } 塊餅乾得到一${ factoryArray[i].fufufu }`
 			}
 
