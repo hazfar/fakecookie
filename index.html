@@ -4,29 +4,45 @@
 </head>
 <body>
 	<img id="TheCookie" src="https://i.imgur.com/AhhFpo2.jpg" style="height: 100px;">
-	<span id="Ctimes">you have 0 cookies</span>
+	<br>
+	<span id="Cinfo">點擊餅乾！每點一次你會得到 1 塊餅乾！</span>
+	<br>
+	<span id="Ctimes">你現在有 0 塊餅乾！</span>
 	<br>
 	<img id="TheGranny" src="https://i.imgur.com/H1O8KaY.jpg" style="height: 100px;">
-	<span id="Gtimes">you have 0 grannies</span>
+	<br>
+	<span>一個餅乾婆婆每 10 秒會幫你生產 1 塊餅乾！</span>
+	<span id="Ginfo">你現在可以消耗 100 塊餅乾得到一個餅乾婆婆！</span>
+	<br>
+	<span id="Gtimes">你現在有 0 個餅乾婆婆！每 10 秒會幫你生產 0 塊餅乾！</span>
 	<br>
 	<img id="TheMachine" src="https://i.imgur.com/GVyH10v.jpg" style="height: 100px;">
-	<span id="Mtimes">you have 0 cookie machines</span>
+	<br>
+	<span>一個自動餅乾機器每 1 秒會幫你生產 1 塊餅乾！</span>
+	<span id="Minfo">你可以消耗 1000 塊餅乾得到一個自動餅乾機器！</span>
+	<br>
+	<span id="Mtimes">你現在有 0 個自動餅乾機器！每 1 秒會幫你生產 0 塊餅乾！</span>
 	<br>
 	<!-- HTML的換行 -->
 	<img id="ThePortal" src="https://i.imgur.com/ZsMk8Vf.jpg" style="height: 100px;">
-	<span id="Ptimes">you have 0 cookie portals</span>
+	<br>
+	<span>一個神秘餅乾傳送門每 1 秒會幫你生產 10 塊餅乾！</span>
+	<span id="Pinfo">你可以消耗 5000 塊餅乾得到一個神秘餅乾傳送門！</span>
+	<br>
+	<span id="Ptimes">你現在有 0 個神秘餅乾傳送門！每 1 秒會幫你生產 0 塊餅乾！</span>
 </body>
 <script type="text/javascript">
 
 	var factoryArray = [
 			{
 				id: 'TheCookie',
-				cost: -1,
+				cost: 0,//原本用-1有問題 每次點擊變成兩塊餅乾
 				amount: 0,
 				production: 0,
 				time: 1000000000000000,
 				lalala: "Ctimes",
-				fufufu: "cookies",
+				info: "Cinfo",
+				fufufu: "塊餅乾！",
 			},
 			{
 				id: 'TheGranny',
@@ -35,7 +51,8 @@
 				production: 1,
 				time: 10000,
 				lalala: "Gtimes",
-				fufufu: "grannies",
+				info: "Ginfo",
+				fufufu: "個餅乾婆婆！",
 			},
 			{
 				id: 'TheMachine',
@@ -44,7 +61,8 @@
 				production: 1,
 				time: 1000,
 				lalala: "Mtimes",
-				fufufu: "cookie machines",
+				info: "Minfo",
+				fufufu: "個自動餅乾機器！",
 			},
 			{
 				id: 'ThePortal',
@@ -53,13 +71,19 @@
 				production: 10,
 				time: 1000,
 				lalala: "Ptimes",
-				fufufu: "cookie portals",
+				info: "Pinfo",
+				fufufu: "個神秘餅乾傳送門！",
 			},
 		];
 
 	function updateCookie(amount = 0) {
 		factoryArray[0].amount += amount
-		document.getElementById(factoryArray[0].lalala).innerText = `you have ${ factoryArray[0].amount } ${ factoryArray[0].fufufu }.`
+		document.getElementById(factoryArray[0].lalala).innerText = `你現在有 ${ factoryArray[0].amount } ${ factoryArray[0].fufufu }`
+	}
+
+	function costAdder() {
+		factoryArray[i].cost += factoryArray[i].cost * 0.01
+		document.getElementById(factoryArray[i].info).innerText = `你現在可以消耗 ${ factoryArray[i].cost } 塊餅乾得到一${ factoryArray[i].fufufu }`
 	}
 
 	function cookieAdder(amount, time) {
@@ -82,8 +106,14 @@
 				// factoryArray[0].amount -= factoryArray[i].cost;
 				// document.getElementById(factoryArray[0].lalala).innerText = factoryArray[0].amount
 			}
-			document.getElementById(factoryArray[i].lalala).innerText = `you have ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }.`
-			// document.getElementById(factoryArray[i].lalala).innerText = 'you have ' + factoryArray[i].amount + ' ' + factoryArray[i].fufufu
+
+			if( i > 0){
+				document.getElementById(factoryArray[i].lalala).innerText = `你現在有 ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${ factoryArray[i].amount * factoryArray[i].production } 塊餅乾！`
+				// document.getElementById(factoryArray[i].lalala).innerText = 'you have ' + factoryArray[i].amount + ' ' + factoryArray[i].fufufu
+				factoryArray[i].cost += factoryArray[i].cost * 0.01 | 0;
+				document.getElementById(factoryArray[i].info).innerText = `你現在可以消耗 ${ factoryArray[i].cost } 塊餅乾得到一${ factoryArray[i].fufufu }`
+			}
+
 		})
 
 
