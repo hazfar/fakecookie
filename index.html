@@ -96,7 +96,7 @@
 	}
 
 	for (let i = 0; i < factoryArray.length; i++) {
-		document.getElementById(factoryArray[i].id).addEventListener('click', function(e){
+		document.getElementById(factoryArray[i].id).addEventListener('click' && 'touchstart', function(e){
 			if(factoryArray[i].cost <= factoryArray[0].amount){
 				factoryArray[i].amount++;
 				submitAdder(factoryArray[i].production , factoryArray[i].time)
