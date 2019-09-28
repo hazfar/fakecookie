@@ -1,6 +1,6 @@
 <html>
 <head>
-	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 </head>
 <body>
 	<img id="TheCookie" src="https://i.imgur.com/AhhFpo2.jpg" style="height: 100px;">
@@ -96,7 +96,7 @@
 	}
 
 	for (let i = 0; i < factoryArray.length; i++) {
-		document.getElementById(factoryArray[i].id).addEventListener('click' && 'touchstart', function(e){
+		document.getElementById(factoryArray[i].id).addEventListener('click', function(e){
 			if(factoryArray[i].cost <= factoryArray[0].amount){
 				factoryArray[i].amount++;
 				submitAdder(factoryArray[i].production , factoryArray[i].time)
