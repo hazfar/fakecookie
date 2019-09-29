@@ -100,6 +100,24 @@
 			},
 		];
 
+	/* 筆記
+	
+	存特定字串：
+	localStorage.<變數名> = <數值(字串)>
+	localStorage['<變數名>'] = <數值(字串)>
+
+	ex.
+	localStorage.cookie = '123456'
+
+	JSON：
+	物件轉字串
+	JSON.stringify( <物件> )
+
+	字串轉物件
+	JSON.parse( <字串> )
+
+	*/
+
 	function updateCookie(amount = 0) {
 		factoryArray[0].amount += amount
 		document.getElementById(factoryArray[0].lalala).innerText = `你現在有 ${ factoryArray[0].amount } ${ factoryArray[0].fufufu }`
