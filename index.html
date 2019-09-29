@@ -1,35 +1,55 @@
 <html>
 <head>
-	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 </head>
+<style type="text/css">
+.img-container {
+	width: 150px;
+	height: 100px;
+	/*position: relative;*/
+}
+.img-container > img {
+	/*position: absolute;*/
+	cursor: pointer;
+	max-width: 100%;
+	max-height: 100%;
+	/*width: auto;
+	height: auto;*/
+}
+</style>
 <body>
-	<img id="TheCookie" src="https://i.imgur.com/AhhFpo2.jpg" style="height: 100px;">
-	<br>
+	<div class="img-container">
+		<img id="TheCookie" src="https://i.imgur.com/AhhFpo2.jpg" style="height: 100px;">
+	</div>
+	
 	<span id="Cinfo">點擊餅乾！每點一次你會得到 1 塊餅乾！</span>
-	<br>
 	<span id="Ctimes">你現在有 0 塊餅乾！</span>
-	<br>
-	<img id="TheGranny" src="https://i.imgur.com/H1O8KaY.jpg" style="height: 100px;">
-	<br>
+	
+	<div class="img-container">	
+		<img id="TheGranny" src="https://i.imgur.com/H1O8KaY.jpg" style="height: 100px;">
+	</div>
+	
 	<span>一個餅乾婆婆每 10 秒會幫你生產 1 塊餅乾！</span>
 	<span id="Ginfo">你現在可以消耗 100 塊餅乾得到一個餅乾婆婆！</span>
-	<br>
 	<span id="Gtimes">你現在有 0 個餅乾婆婆！每 10 秒會幫你生產 0 塊餅乾！</span>
-	<br>
-	<img id="TheMachine" src="https://i.imgur.com/GVyH10v.jpg" style="height: 100px;">
-	<br>
+	
+	<div class="img-container">	
+		<img id="TheMachine" src="https://i.imgur.com/GVyH10v.jpg" style="height: 100px;">
+	</div>
+	
 	<span>一個自動餅乾機器每 1 秒會幫你生產 1 塊餅乾！</span>
 	<span id="Minfo">你可以消耗 1000 塊餅乾得到一個自動餅乾機器！</span>
-	<br>
 	<span id="Mtimes">你現在有 0 個自動餅乾機器！每 1 秒會幫你生產 0 塊餅乾！</span>
-	<br>
+	
 	<!-- HTML的換行 -->
-	<img id="ThePortal" src="https://i.imgur.com/ZsMk8Vf.jpg" style="height: 100px;">
-	<br>
+	<div class="img-container">	
+		<img id="ThePortal" src="https://i.imgur.com/ZsMk8Vf.jpg" style="height: 100px;">
+	</div>
+	
 	<span>一個神秘餅乾傳送門每 1 秒會幫你生產 10 塊餅乾！</span>
 	<span id="Pinfo">你可以消耗 5000 塊餅乾得到一個神秘餅乾傳送門！</span>
-	<br>
 	<span id="Ptimes">你現在有 0 個神秘餅乾傳送門！每 1 秒會幫你生產 0 塊餅乾！</span>
+
 </body>
 <script type="text/javascript">
 
