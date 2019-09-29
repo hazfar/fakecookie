@@ -22,6 +22,7 @@
 		<img id="TheCookie" src="https://i.imgur.com/AhhFpo2.jpg" style="height: 100px;">
 	</div>
 	
+	<!-- 縮成一行 -->
 	<span id="Cinfo">點擊餅乾！每點一次你會得到 1 塊餅乾！</span>
 	<span id="Ctimes">你現在有 0 塊餅乾！</span>
 	
@@ -29,6 +30,7 @@
 		<img id="TheGranny" src="https://i.imgur.com/H1O8KaY.jpg" style="height: 100px;">
 	</div>
 	
+	<!-- 縮成一行 -->
 	<span>一個餅乾婆婆每 10 秒會幫你生產 1 塊餅乾！</span>
 	<span id="Ginfo">你現在可以消耗 100 塊餅乾得到一個餅乾婆婆！</span>
 	<span id="Gtimes">你現在有 0 個餅乾婆婆！每 10 秒會幫你生產 0 塊餅乾！</span>
@@ -37,6 +39,7 @@
 		<img id="TheMachine" src="https://i.imgur.com/GVyH10v.jpg" style="height: 100px;">
 	</div>
 	
+	<!-- 縮成一行 -->
 	<span>一個自動餅乾機器每 1 秒會幫你生產 1 塊餅乾！</span>
 	<span id="Minfo">你可以消耗 1000 塊餅乾得到一個自動餅乾機器！</span>
 	<span id="Mtimes">你現在有 0 個自動餅乾機器！每 1 秒會幫你生產 0 塊餅乾！</span>
@@ -46,6 +49,7 @@
 		<img id="ThePortal" src="https://i.imgur.com/ZsMk8Vf.jpg" style="height: 100px;">
 	</div>
 	
+	<!-- 縮成一行 -->
 	<span>一個神秘餅乾傳送門每 1 秒會幫你生產 10 塊餅乾！</span>
 	<span id="Pinfo">你可以消耗 5000 塊餅乾得到一個神秘餅乾傳送門！</span>
 	<span id="Ptimes">你現在有 0 個神秘餅乾傳送門！每 1 秒會幫你生產 0 塊餅乾！</span>
@@ -101,11 +105,6 @@
 		document.getElementById(factoryArray[0].lalala).innerText = `你現在有 ${ factoryArray[0].amount } ${ factoryArray[0].fufufu }`
 	}
 
-	function costAdder() {
-		factoryArray[i].cost += factoryArray[i].cost * 0.01
-		document.getElementById(factoryArray[i].info).innerText = `你現在可以消耗 ${ factoryArray[i].cost } 塊餅乾得到一${ factoryArray[i].fufufu }`
-	}
-
 	function cookieAdder(amount, time) {
 		updateCookie(amount)
 		submitAdder(amount, time)
@@ -115,22 +114,30 @@
 		setTimeout(cookieAdder, time, amount, time);
 	}
 
+	//新 function 用來改文字
+
 	for (let i = 0; i < factoryArray.length; i++) {
+
 		document.getElementById(factoryArray[i].id).addEventListener('click', function(e){
+
 			if(factoryArray[i].cost <= factoryArray[0].amount){
+
 				factoryArray[i].amount++;
+
 				submitAdder(factoryArray[i].production , factoryArray[i].time)
 				// submitAdder(factoryArray[i].amount * factoryArray[i].production, factoryArray[i].time)
 
-				updateCookie( -factoryArray[i].cost )
+				updateCookie( - factoryArray[i].cost )
 				// factoryArray[0].amount -= factoryArray[i].cost;
 				// document.getElementById(factoryArray[0].lalala).innerText = factoryArray[0].amount
 				factoryArray[i].cost += factoryArray[i].cost * 0.01 | 0;
 			}
 
 			if( i > 0){
+
+				//改進新 function
+
 				document.getElementById(factoryArray[i].lalala).innerText = `你現在有 ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${ factoryArray[i].amount * factoryArray[i].production } 塊餅乾！`
-				// document.getElementById(factoryArray[i].lalala).innerText = 'you have ' + factoryArray[i].amount + ' ' + factoryArray[i].fufufu
 				document.getElementById(factoryArray[i].info).innerText = `你現在可以消耗 ${ factoryArray[i].cost } 塊餅乾得到一${ factoryArray[i].fufufu }`
 			}
 
