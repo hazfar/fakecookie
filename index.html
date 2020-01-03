@@ -32,18 +32,16 @@
 	</div>
 	
 	<!-- 縮成一行 -->
-	<span>一個餅乾婆婆每 10 秒會幫你生產 1 塊餅乾！</span>
-	<span id="Ginfo">你現在可以消耗 100 塊餅乾得到一個餅乾婆婆！</span>
-	<span id="Gtimes">你現在有 0 個餅乾婆婆！每 10 秒會幫你生產 0 塊餅乾！</span>
+	<!-- <span>一個餅乾婆婆每 10 秒會幫你生產 1 塊餅乾！</span> -->
+	<span id="Ginfo"></span>
+	<!-- <span id="Gtimes"></span> -->
 	
 	<div class="img-container">	
 		<img id="TheMachine" src="./image01.jpg" style="height: 100px;">
 	</div>
 	
 	<!-- 縮成一行 -->
-	<span>一個自動餅乾機器每 1 秒會幫你生產 1 塊餅乾！</span>
-	<span id="Minfo">你可以消耗 1000 塊餅乾得到一個自動餅乾機器！</span>
-	<span id="Mtimes">你現在有 0 個自動餅乾機器！每 1 秒會幫你生產 0 塊餅乾！</span>
+	<span id="Minfo"></span>
 	
 	<!-- HTML的換行 -->
 	<div class="img-container">	
@@ -51,9 +49,7 @@
 	</div>
 	
 	<!-- 縮成一行 -->
-	<span>一個神秘餅乾傳送門每 1 秒會幫你生產 10 塊餅乾！</span>
-	<span id="Pinfo">你可以消耗 5000 塊餅乾得到一個神秘餅乾傳送門！</span>
-	<span id="Ptimes">你現在有 0 個神秘餅乾傳送門！每 1 秒會幫你生產 0 塊餅乾！</span>
+	<span id="Pinfo"></span>
 
 </body>
 <script type="text/javascript">
@@ -67,7 +63,7 @@
 				time: 1000000000000000,
 				lalala: "Ctimes",
 				info: "Cinfo",
-				fufufu: "塊餅乾！",
+				fufufu: "塊餅乾",
 			},
 			{
 				id: 'TheGranny',
@@ -75,9 +71,9 @@
 				amount: 0,
 				production: 1,
 				time: 10000,
-				lalala: "Gtimes",
+				// lalala: "Gtimes",
 				info: "Ginfo",
-				fufufu: "個餅乾婆婆！",
+				fufufu: "個餅乾婆婆",
 			},
 			{
 				id: 'TheMachine',
@@ -85,9 +81,9 @@
 				amount: 0,
 				production: 1,
 				time: 1000,
-				lalala: "Mtimes",
+				// lalala: "Mtimes",
 				info: "Minfo",
-				fufufu: "個自動餅乾機器！",
+				fufufu: "個自動餅乾機器",
 			},
 			{
 				id: 'ThePortal',
@@ -95,9 +91,9 @@
 				amount: 0,
 				production: 10,
 				time: 1000,
-				lalala: "Ptimes",
+				// lalala: "Ptimes",
 				info: "Pinfo",
-				fufufu: "個神秘餅乾傳送門！",
+				fufufu: "個神秘餅乾傳送門",
 			},
 		];
 
@@ -129,9 +125,22 @@
 
 	*/
 
+	function printText(i) {
+		let text = `每一${ factoryArray[i].fufufu }每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${  factoryArray[i].production } 塊餅乾！\r\n`
+		
+		text += `你現在可以消耗 ${ factoryArray[i].cost } 塊餅乾得到一${ factoryArray[i].fufufu }`
+		
+		if (factoryArray[i].amount > 0) {
+			text += `\r\n你現在有 ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }！每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${ factoryArray[i].amount * factoryArray[i].production } 塊餅乾！`
+		}
+
+		document.getElementById(factoryArray[i].info).innerText = text
+
+	}
+
 	function updateCookie(amount = 0) {
 		factoryArray[0].amount += amount
-		document.getElementById(factoryArray[0].lalala).innerText = `你現在有 ${ factoryArray[0].amount } ${ factoryArray[0].fufufu }`
+		document.getElementById(factoryArray[0].lalala).innerText = `你現在有 ${ factoryArray[0].amount | 0 } ${ factoryArray[0].fufufu }`
 	}
 
 	function cookieAdder(amount, time) {
@@ -141,19 +150,35 @@
 
 	function submitAdder(amount, time) {
 		setTimeout(cookieAdder, time, amount, time);
+		
 	}
+
+	var interval = 50;
+	setInterval(() => {
+		let totalProduction = 0
+		for (let i = 1; i < factoryArray.length; i++) {
+			let ProductionPerSec = factoryArray[i].production * factoryArray[i].amount * interval / ( factoryArray[i].time );
+            // console.log('debug: ProductionPerSec', ProductionPerSec)
+			totalProduction += ProductionPerSec;
+		}
+		updateCookie(totalProduction)
+        console.log('debug: totalProduction per second', totalProduction*1000/interval)
+	}, interval);
 
 	//新 function 用來改文字
 
 	for (let i = 0; i < factoryArray.length; i++) {
-
+		
+		if (i > 0){
+			printText(i);
+		}
 		document.getElementById(factoryArray[i].id).addEventListener('click', function(e){
 
 			if(factoryArray[i].cost <= factoryArray[0].amount){
 
 				factoryArray[i].amount++;
 
-				submitAdder(factoryArray[i].production , factoryArray[i].time)
+				// submitAdder(factoryArray[i].production , factoryArray[i].time)
 				// submitAdder(factoryArray[i].amount * factoryArray[i].production, factoryArray[i].time)
 
 				updateCookie( - factoryArray[i].cost )
@@ -164,10 +189,8 @@
 
 			if( i > 0){
 
-				//改進新 function
-
-				document.getElementById(factoryArray[i].lalala).innerText = `你現在有 ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${ factoryArray[i].amount * factoryArray[i].production } 塊餅乾！`
-				document.getElementById(factoryArray[i].info).innerText = `你現在可以消耗 ${ factoryArray[i].cost } 塊餅乾得到一${ factoryArray[i].fufufu }`
+				printText(i)
+	
 			}
 
 		})
