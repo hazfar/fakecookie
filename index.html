@@ -126,12 +126,12 @@
 	*/
 
 	function printText(i) {
-		let text = `每一${ factoryArray[i].fufufu }每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${  factoryArray[i].production } 塊大屌！\r\n`
+		let text = `每一${ factoryArray[i].fufufu }每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${  factoryArray[i].production } 塊恐龍！\r\n`
 		
-		text += `你現在可以消耗 ${ factoryArray[i].cost } 塊大屌得到一${ factoryArray[i].fufufu }`
+		text += `你現在可以消耗 ${ factoryArray[i].cost } 塊恐龍得到一${ factoryArray[i].fufufu }`
 		
 		if (factoryArray[i].amount > 0) {
-			text += `\r\n你現在有 ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }！每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${ factoryArray[i].amount * factoryArray[i].production } 塊大屌！`
+			text += `\r\n你現在有 ${ factoryArray[i].amount } ${ factoryArray[i].fufufu }！每 ${ factoryArray[i].time / 1000 } 秒會幫你生產 ${ factoryArray[i].amount * factoryArray[i].production } 塊恐龍！`
 		}
 
 		document.getElementById(factoryArray[i].info).innerText = text
