@@ -4,11 +4,20 @@
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <style type="text/css">
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
 .img-container {
-	width: 150px;
-	height: 150px;
+	/* width: 200px;
+	height: 200px; */
 	/*position: relative;*/
 }
+
 .img-container > img {
 	/*position: absolute;*/
 	cursor: pointer;
@@ -17,39 +26,56 @@
 	/*width: auto;
 	height: auto;*/
 }
+
+.totalCookie {
+	height: 40px;
+	width: 50%;
+	font-size: 36px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	text-align-last: center;
+}
 </style>
 <body>
-	<div class="img-container">
-		<img id="TheCookie" src="./image01.jpg" style="height: 100px;">
+	<div class="container">
+		<span id="Ctimes" class="totalCookie">你現在有 0 塊餅乾！</span>
 	</div>
 	
+	<div class="container">
+		<div class="img-container">
+			<img id="TheCookie" src="./cookie.png" style="height: 150px;">
+		</div>
+		<span id="Cinfo">點擊餅乾！每點一次你會得到 1 塊餅乾！</span>
+	</div>
 	<!-- 縮成一行 -->
-	<span id="Cinfo">點擊餅乾！每點一次你會得到 1 塊餅乾！</span>
-	<span id="Ctimes">你現在有 0 塊餅乾！</span>
 	
-	<div class="img-container">	
-		<img id="TheGranny" src="./image01.jpg" style="height: 100px;">
+	<div class="container">
+		<div class="img-container">	
+			<img id="TheGranny" src="./granny.png" style="height: 150px;">
+		</div>
+		<!-- 縮成一行 -->
+		<!-- <span>一個餅乾婆婆每 10 秒會幫你生產 1 塊餅乾！</span> -->
+		<span id="Ginfo"></span>
+		<!-- <span id="Gtimes"></span> -->
 	</div>
 	
-	<!-- 縮成一行 -->
-	<!-- <span>一個餅乾婆婆每 10 秒會幫你生產 1 塊餅乾！</span> -->
-	<span id="Ginfo"></span>
-	<!-- <span id="Gtimes"></span> -->
-	
-	<div class="img-container">	
-		<img id="TheMachine" src="./image01.jpg" style="height: 100px;">
+	<div class="container">
+		<div class="img-container">	
+			<img id="TheMachine" src="./machine.png" style="height: 150px;">
+		</div>
+		
+		<!-- 縮成一行 -->
+		<span id="Minfo"></span>
 	</div>
-	
-	<!-- 縮成一行 -->
-	<span id="Minfo"></span>
-	
+
 	<!-- HTML的換行 -->
-	<div class="img-container">	
-		<img id="ThePortal" src="./image01.jpg" style="height: 100px;">
+	<div class="container">
+		<div class="img-container">	
+			<img id="ThePortal" src="./portal.png" style="height: 150px;">
+		</div>
+		
+		<!-- 縮成一行 -->
+		<span id="Pinfo"></span>
 	</div>
-	
-	<!-- 縮成一行 -->
-	<span id="Pinfo"></span>
 
 </body>
 <script type="text/javascript">
